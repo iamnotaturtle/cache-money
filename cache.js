@@ -34,7 +34,6 @@ class Cache {
     set(key, value) {
         if (Object.keys(this.store).length > this.maxKeys) {
             throw new Error('Cache full!');
-            return;
         }
 
         this.store[key] = {
