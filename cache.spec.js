@@ -1,5 +1,3 @@
-const cache = require('./cache');
-
 const Cache = require('./cache').Cache;
 
 describe('cache', () => {
