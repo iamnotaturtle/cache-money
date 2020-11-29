@@ -30,7 +30,8 @@ jobs:
         with:
           node-version: 14.x
           registry-url: https://npm.pkg.github.com/
-      - run: echo "//registry.npmjs.org/:_authToken=${{ secrets.REGISTRYTOKEN }}" > ~/.npmrc
+          scope: "@iamnotaturtle"
+      - run: echo "registry=https://npm.pkg.github.com/@iamnotaturtle" >> .npmrc
       - run: yarn install --frozen-lockfile
       - run: yarn version --prerelease --preid=ci-$GITHUB_RUN_ID --no-git-tag-version
       - run: yarn pack
