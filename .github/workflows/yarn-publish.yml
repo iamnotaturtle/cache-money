@@ -30,9 +30,9 @@ jobs:
        with:
         always-auth: true
         node-version: 14.x
-        registry-url: https://npm.pkg.github.com/
-        scope: "iamnotaturtle"
+     - run: echo "registry=https://npm.pkg.github.com/iamnotaturtle" >> .npmrc
      - run: echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" >> .npmrc
+     - run: cat .npmrc
      - run: yarn install --frozen-lockfile
      - run: yarn version --prerelease --preid=ci-$GITHUB_RUN_ID --no-git-tag-version
      - run: yarn pack
