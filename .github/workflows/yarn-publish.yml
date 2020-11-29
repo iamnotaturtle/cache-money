@@ -25,6 +25,7 @@ jobs:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+     - uses: actions/checkout@v2
      - uses: actions/setup-node@v1
        with:
         node-version: 14.x
@@ -32,7 +33,7 @@ jobs:
         scope: "@iamnotaturtle"
      - run: echo 'registry "https://npm.pkg.github.com/@iamnotaturtle"' >> .yarnrc
      - run: yarn install --frozen-lockfile
-     - run: ls -a && yarn version --prerelease --preid=ci-$GITHUB_RUN_ID --no-git-tag-version
+     - run: yarn version --prerelease --preid=ci-$GITHUB_RUN_ID --no-git-tag-version
      - run: yarn pack
      - run: yarn publish $(ls *.tgz)
     env:
