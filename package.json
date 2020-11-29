@@ -1,5 +1,5 @@
 {
-  "name": "cachemoney",
+  "name": "@iamnotaturtle/cachemoney",
   "version": "1.0.0",
   "description": "In memory cache in JS",
   "main": "cache.js",
