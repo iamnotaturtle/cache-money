@@ -21,26 +21,8 @@ jobs:
       - run: yarn lint
       - run: yarn test
 
-  package:
+  package-publish:
     needs: [build]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 14.x
-
-      - run: yarn install --frozen-lockfile
-      - run: yarn version --prerelease --preid=ci-$GITHUB_RUN_ID --no-git-tag-version
-      - run: yarn pack
-      - name: Upload
-        uses: actions/upload-artifact@v2
-        with:
-            name: package
-            path: "*.tgz"
-
-  publish-gpr:
-    needs: [package]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -49,6 +31,8 @@ jobs:
           node-version: 14.x
           registry-url: https://npm.pkg.github.com/
       - run: yarn install --frozen-lockfile
+      - run: yarn version --prerelease --preid=ci-$GITHUB_RUN_ID --no-git-tag-version
+      - run: yarn pack
       - run: yarn publish $(ls *.tgz)
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
