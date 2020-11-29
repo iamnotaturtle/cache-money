@@ -5,6 +5,10 @@
   "main": "cache.js",
   "author": "iamnotaturtle",
   "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/iamnotaturtle/cache-money.git"
+  }
   "scripts": {
     "lint": "eslint .",
     "test": "jest"
